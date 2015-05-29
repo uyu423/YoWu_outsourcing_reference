@@ -18,7 +18,14 @@
 
 	echo "<div class=\"paging\">";
 	if($nowBigPage != 1) {
-		echo "<a href='".$fileName."?page=".($stPage - 1)."'><span class=\"num\"><</span></a>\n";
+		echo "<a href='".$fileName."?page=".($stPage - 1);
+		if($_GET['category'] && strcmp($_GET['category'], "all") != 0) {
+			echo "&category=".$_GET['category'];
+		}
+		if($_GET['selTxt']) {
+			echo "&selTxt=".$_GET['selTxt'];
+		}
+		echo "'><span class=\"num\"><</span></a>\n";
 	}	// '<' ICON DEFINE
 	for($i=$stPage; $i<=$edPage; $i++) {
 		if($i > $maxPage) break;
@@ -26,10 +33,24 @@
 			echo "<span class=\"nowNum\">".$i."</span>\n";
 			continue;
 		}
-		echo "<a href=\"".$fileName."?page=".$i."\"><span class=\"num\">".$i."</span></a>\n";
+		echo "<a href=\"".$fileName."?page=".$i;
+		if($_GET['category'] && strcmp($_GET['category'], "all") != 0) {
+			echo "&category=".$_GET['category'];
+		}
+		if($_GET['selTxt']) {
+			echo "&selTxt=".$_GET['selTxt'];
+		}
+		echo "\"><span class=\"num\">".$i."</span></a>\n";
 	}	// FIVE PAGE ICON GENERATOR
 	if(!($i > $maxPage)) {
-		echo "<a href='".$fileName."?page=".($edPage + 1)."'><span class=\"num\">></span></a>\n";
+		echo "<a href='".$fileName."?page=".($edPage + 1);
+		if($_GET['category'] && strcmp($_GET['category'], "all") != 0) {
+			echo "&category=".$_GET['category'];
+		}
+		if($_GET['selTxt']) {
+			echo "&selTxt=".$_GET['selTxt'];
+		}
+		echo "'><span class=\"num\">></span></a>\n";
 	}	// '>' ICON DEFINE
 	echo "</div>";
 ?>
