@@ -1,16 +1,7 @@
 <?php 
-	include_once("./newDbConn.php");
-//	$board = $_GET['board'];
-//	$page = $_GET['page'];
-	$sql = "select wr_id from ";
-	switch($board) {
-		case "notice":
-			$sql = $sql."g4_write_Notice;"; //CONCAT TABLE NAME
-			$fileName = "notice.php"; //DEFINE FILENAME
-			break;
-	}
-
-	$result = $db->query($sql) or die($sql);
+	include_once("../phpModules/newDbConn.php");
+	
+	$result = $db->query($sql_page) or die($sql_page);
 	$cnt = $result->num_rows;
 	$maxPage = ceil($cnt / $maxPost);
 	$nowBigPage = (int)(($page - 1)/5 + 1);
@@ -41,5 +32,4 @@
 		echo "<a href='".$fileName."?page=".($edPage + 1)."'><span class=\"num\">></span></a>\n";
 	}	// '>' ICON DEFINE
 	echo "</div>";
-	$db->close();
 ?>
